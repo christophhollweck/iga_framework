@@ -8,7 +8,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Christoph Hollweck",
     author_email="hollweck.christoph@gmail.com",
-    url="https://https://github.com/christophhollweck/iga_framework",
+    url="https://github.com/christophhollweck/iga_framework",
     license="MIT",
     packages=find_packages(),
     install_requires=[
