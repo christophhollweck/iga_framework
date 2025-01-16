@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.special import roots_legendre
-from mayavi import mlab
 
 class HeatEquation:
     def __init__(self, HS, dirichlet, neumann, analytical_solution=None):
@@ -200,67 +199,3 @@ class HeatEquation:
         t = np.linalg.solve(K, f)
         for b, val in zip(self.HS.basis, t):
             b.cp[2] = val
-
-    def plot_solution(self, analytical_function=None, n_points=10, s=0.05):
-        def eval(u, v):
-            x = np.zeros_like(u)
-            y = np.zeros_like(u)
-            z = np.zeros_like(u)
-            for i in range(len(u)):
-                eval = self.HS(u[i], v[i])
-                x[i] = eval[0]
-                y[i] = eval[1]
-                z[i] = eval[2]
-            return x, y, z
-
-        # Plot computed solution
-        u_vals = np.linspace(self.HS.spaces[0].ku[0], self.HS.spaces[0].ku[-1], 20)
-        v_vals = np.linspace(self.HS.spaces[0].kv[0], self.HS.spaces[0].kv[-1], 20)
-        u, v = np.meshgrid(u_vals, v_vals)
-        x, y, z = eval(u.flatten(), v.flatten())
-        x = x.reshape(u.shape)
-        y = y.reshape(u.shape)
-        z = z.reshape(u.shape)
-
-        mlab.figure(bgcolor=(1, 1, 1))
-
-        # Plot the computed solution as a mesh
-        mlab.mesh(x, y, z, colormap='coolwarm')
-
-        # Plot element edges
-        for element in self.HS.elements:
-            u_min = element.u_min
-            v_min = element.v_min
-            u_max = element.u_max
-            v_max = element.v_max
-
-            u_edges = [
-                np.linspace(u_min, u_max, n_points),
-                np.full(n_points, u_max),
-                np.linspace(u_max, u_min, n_points),
-                np.full(n_points, u_min)
-            ]
-            v_edges = [
-                np.full(n_points, v_min),
-                np.linspace(v_min, v_max, n_points),
-                np.full(n_points, v_max),
-                np.linspace(v_max, v_min, n_points)
-            ]
-
-            for u_edge, v_edge in zip(u_edges, v_edges):
-                x_edge, y_edge, z_edge = eval(u_edge, v_edge)
-                mlab.plot3d(x_edge, y_edge, z_edge, color=(0, 0, 0), tube_radius=s / 5, line_width=1.0)
-        mlab.show()
-
-        # Plot the analytical solution if provided
-        if analytical_function:
-            x_analytical = x
-            y_analytical = y
-            z_analytical = np.zeros_like(x)
-            for i in range(len(x_analytical)):
-                z_analytical[i] = analytical_function(x_analytical[i], y_analytical[i])
-
-            # Plot the analytical solution as a mesh
-            mlab.mesh(x_analytical, y_analytical, z_analytical, color=(1, 0, 0), opacity=0.5)
-
-        mlab.show()
