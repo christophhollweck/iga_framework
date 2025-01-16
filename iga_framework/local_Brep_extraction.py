@@ -1,7 +1,6 @@
 import splinepy
 import numpy as np
 import matplotlib.pyplot as plt
-from THBSplines.element import Element
 from shapely.geometry import LineString, Point, Polygon
 
 

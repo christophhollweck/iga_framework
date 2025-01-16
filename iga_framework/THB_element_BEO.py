@@ -3,7 +3,6 @@ import numpy as np
 from Bernstein_polynomials import eval_BS
 
 
-
 def compute_2d_basis_functions(B_1d_u, B_1d_v, p):
     meta_list = []
 
@@ -20,6 +19,8 @@ def compute_2d_basis_functions(B_1d_u, B_1d_v, p):
 
 # Standard
 def get_BEO(T):
+
+    print('calculating BEO...')
 
     p = T.p
 
@@ -49,6 +50,8 @@ def get_BEO(T):
             C_el[fnum,:] = np.linalg.solve(np.array(B_eval_2D), N_eval)
 
         el.BEO = C_el
+
+    print('done calculating BEO')
 
 
 #

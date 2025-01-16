@@ -53,6 +53,8 @@ def write_connectivity(bfnums, path, filename):
 
 def write_kfile(T, path, filename):
 
+    print('write BEXT format...')
+
     NumCPs = len(T.basis)
     NumEl = len(T.elements)
     NumCoefVec = np.sum([len(e.supported_b_splines_list) for e in T.elements])
@@ -174,7 +176,7 @@ def write_kfile(T, path, filename):
     # with open(filepath2, 'w') as file:
     #     file.write(content)
 
-    print('BEO done')
+    print('done writing BEXT format')
 
 
 

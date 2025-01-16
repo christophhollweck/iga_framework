@@ -7,7 +7,7 @@ import numpy as np
 
 
 
-def refine_patch(file_path, level, p_new):
+def refine_patch(file_path, level):
 
     def get_Bspl(kv_u, kv_v, ax, ay, ximax, etamax, conti, degrees):
         '''
@@ -187,10 +187,10 @@ def refine_patch(file_path, level, p_new):
     ay = max_y - min_y
 
     # define new Bspline
-    # new_pr = pr
-    # new_ps = ps
-    new_pr = p_new
-    new_ps = p_new
+    new_pr = pr
+    new_ps = ps
+    # new_pr = p_new
+    # new_ps = p_new
 
     p = new_pr
     # print(pr, ps)

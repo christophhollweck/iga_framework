@@ -97,7 +97,9 @@ def get_coeffs_f_2D(gamma, coeffs_1D):
 
 
 def get_BEO(LR):
-    
+
+    print('calculating BEO...')
+
     p = LR.p
     C = []
 
@@ -123,3 +125,4 @@ def get_BEO(LR):
             C_el[fnum,:] = get_coeffs_f_2D(gamma, coeffs_f_1D)
         el.BEO = C_el
 
+    print('done calculating BEO')

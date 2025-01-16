@@ -25,6 +25,7 @@ class Brep:
         self.split_Brep(self.cut_elements)
 
 
+
     def get_polygon(self):
         all_points = []
         for bspl in self.bsplines:

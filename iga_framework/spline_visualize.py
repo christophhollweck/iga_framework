@@ -337,4 +337,8 @@ def plot_surface(RS, n_points=10, s=0.05, evalpnt=None, stressinterp=False, load
         v_arrow = pv.Arrow(start=v_start, direction=v_end - v_start, scale=s * axis_length)
         plotter.add_mesh(v_arrow, color="black", label="Load Vector", point_size=0)
 
+    # for b in RS.basis:
+    #     cp = b.cp
+    #     plotter.add_points(cp, color="orange", point_size=10)
+
     plotter.show()
